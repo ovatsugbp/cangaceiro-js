@@ -1,10 +1,14 @@
 class Negociacao {
 
     //constructor define as propriedades de uma classe
-    constructor(data, quantidade, valor) {
-        this._data = data; 
-        this._quantidade = quantidade;
-        this._valor = valor;
+    constructor (_data, _quantidade, _valor) {
+
+        Object.assign(this, {
+            _quantidade,
+            _valor            
+        });
+        
+        this._data = new Date(_data.getTime()), //criando uma nova referência
         Object.freeze(this); //congela para nao permitir alterações
     }
 
@@ -19,7 +23,7 @@ class Negociacao {
     //propriedade getter de acesso a leitura( é um método mas podemos acessar como propriedade)
     //metodo get -> se tentarmos atribuir um novo valor a propriedade ele será ignorado (sem mensagem de erro)
     get data(){
-        return this._data;
+        return new Date(this._data.getTime()); // construção de uma nova data - copia - programação defensiva
     }
     get quantidade(){
         return this._quantidade;
