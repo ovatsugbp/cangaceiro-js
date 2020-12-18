@@ -1,9 +1,12 @@
 class Negociacoes {
-    constructor() {
+    constructor(armadilha) {
         this._negociacoes = [];
+        this._armadilha = armadilha;
+        Object.freeze(this);
     }
     adiciona(negociacao) {
         this._negociacoes.push(negociacao);
+        this._armadilha(this);
     }
     paraArray() {
         return [].concat(this._negociacoes); // copia do array para evitar alterações
@@ -13,5 +16,10 @@ class Negociacoes {
             (total, item) => total + item.volume,
             0
         );
+    }
+
+    esvazia() {
+        this._negociacoes.length = 0;
+        this._armadilha(this);
     }
 }

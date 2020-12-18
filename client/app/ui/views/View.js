@@ -7,4 +7,7 @@ class View {
     update(model) {
         this._elemento.innerHTML = this.template(model); //inerhtml -> setter (chama outro método por debaixo dos panos)
     }
+    template(model) {
+        throw new Error("você precisa implementar o método template");
+    }
 }
